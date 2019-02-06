@@ -7,15 +7,16 @@ const initialState = {
 
 export const category = (state = initialState, action) => {
     let newCategories = state.categories;
+    let category = action.payload && action.payload.category;
 
     switch (action.type) {
         case actionTypes.NEW_CATEGORY:
-            return { ...state, categories: [...state.categories, action.category] }
+            return { ...state, categories: [...state.categories, category] }
         case actionTypes.EDIT_CATEGORY:
-            newCategories[action.payload.categoryId] = action.category;
+            newCategories[category.categoryId] = category;
             return { ...state, categories: newCategories }
         case actionTypes.REMOVE_CATEGORY:
-            newCategories.splice(action.payload.categoryId, 1);
+            newCategories.splice(category.categoryId, 1);
             return { ...state, categories: newCategories }
         default:
             return state;
