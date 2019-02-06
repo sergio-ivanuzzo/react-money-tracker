@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import DataTable from './components/DataTable';
 import store from './store'
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <DataTable />
     </Provider>,
     document.getElementById('root')
 );

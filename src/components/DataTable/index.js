@@ -1,19 +1,32 @@
-import { React } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
+import DataRow from './DataRow';
 
 
-class DataTable extends React.Component {
+class DataTable extends Component {
     render() {
-        return null;
+        const { expenses, income } = this.props;
+        return (
+            <table>
+                { expenses
+                    .map(exp => (<DataRow/>))
+                }
+                { income
+                    .map(inc => (<DataRow/>))
+                }
+            </table>
+        );
     }
 }
 
-const mapStateToProps = (state) => ({
-    amount: state.amount,
-    expenses: state.expenses,
-    income: state.income
-});
+const mapStateToProps = (state) => {
+    return {
+        amount: state.money.amount,
+        expenses: state.money.expenses,
+        income: state.money.income
+    }
+};
 
 const mapDispatchToProps = (dispatch) => ({
     // expenses

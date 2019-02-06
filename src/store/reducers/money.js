@@ -11,8 +11,8 @@ export const money = (state = initialState, action) => {
     let newAmount = state.amount;
     let newExpenses = state.expenses;
     let newIncome = state.income;
-    let expense = action.payload.expense;
-    let income = action.payload.income;
+    let expense = action.payload && action.payload.expense;
+    let income = action.payload && action.payload.income;
 
     switch (action.type) {
         // Expenses
@@ -29,14 +29,14 @@ export const money = (state = initialState, action) => {
 
         // income
         case actionTypes.NEW_INCOME:
-            return { ...state, amount: newAmount + action.amount, income: [...state.income, action.income] }
+            return { ...state, amount: newAmount + income.amount, income: [...state.income, income] }
         case actionTypes.EDIT_INCOME:
-            newIncome[action.payload.transactionId] = action.income;
-            newAmount += state.expenses.reduce((sum, inc) => sum += inc.amount, 0);
+            newIncome[income.transactionId] = income;
+            newAmount += state.income.reduce((sum, inc) => sum += inc.amount, 0);
             return { ...state, amount: newAmount, income: newIncome }
         case actionTypes.REMOVE_INCOME:
             newAmount -= action.amount;
-            newIncome.splice(action.payload.transactionId, 1);
+            newIncome.splice(income.transactionId, 1);
             return { ...state, amount: newAmount, income: newIncome }
 
         default:

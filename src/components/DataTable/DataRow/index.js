@@ -1,7 +1,7 @@
-import { React } from 'react';
+import React, { Component } from 'react';
 
 
-class DataRow extends React.Component {
+class DataRow extends Component {
     render() {
         return (
             <tr>
@@ -11,3 +11,5 @@ class DataRow extends React.Component {
         );
     }
 }
+
+export default DataRow;
