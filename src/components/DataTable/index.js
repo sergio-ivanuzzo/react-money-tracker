@@ -53,6 +53,16 @@ class DataTable extends Component {
         this.category = category;
     }
 
+    getEditMethod(item) {
+        const { editExpense, editIncome } = this.props;
+        return (parseFloat(item.amount) < 0) ? editExpense.bind(this, item) : editIncome.bind(this, item);
+    }
+
+    getRemoveMethod(item) {
+        const { removeExpense, removeIncome } = this.props;
+        return (parseFloat(item.amount) < 0) ? removeExpense.bind(this, item) : removeIncome.bind(this, item);
+    }
+
     render() {
         // properties
         const { expenses, income, categories, amount } = this.props;
@@ -125,7 +135,11 @@ class DataTable extends Component {
                             </thead>
                             <tbody>
                             { data
-                                .map(item => (<DataRow key={ item.transactionId } item={ item } />))
+                                .map(item => (
+                                    <DataRow key={ item.transactionId }
+                                             item={ item }
+                                             edit={ this.getEditMethod(item) }
+                                             remove={ this.getRemoveMethod(item) } />))
                             }
                             </tbody>
                         </Table>
@@ -148,8 +162,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
     // expenses
     addExpense: (expense) => dispatch(actions.addExpense(expense)),
-    editExpense: (expense) => dispatch(actions.addExpense(expense)),
-    removeExpense: (expense) => dispatch(actions.addExpense(expense)),
+    editExpense: (expense) => dispatch(actions.editExpense(expense)),
+    removeExpense: (expense) => dispatch(actions.removeExpense(expense)),
     // income
     addIncome: (income) => dispatch(actions.addIncome(income)),
     editIncome: (income) => dispatch(actions.editIncome(income)),

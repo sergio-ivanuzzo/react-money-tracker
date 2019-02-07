@@ -50,7 +50,7 @@ export const money = (state = initialState, action) => {
             return { ...state, amount: newAmount, income: newIncome };
 
         case actionTypes.REMOVE_INCOME:
-            newAmount -= action.amount;
+            newAmount -= parseFloat(income.amount);
             newIncome.splice(income.transactionId, 1);
             return { ...state, amount: newAmount, income: newIncome };
 

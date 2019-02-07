@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, ButtonGroup } from 'react-bootstrap';
 
 
 class DataRow extends Component {
@@ -18,13 +19,13 @@ class DataRow extends Component {
     }
 
     render() {
-        let { item } = this.props;
+        let { item, edit, remove } = this.props;
+        let keys = Object.keys(item).filter(key => typeof item[key] !== 'object');
+
         return (
             <tr>
                 {
-                    Object.keys(item)
-                        .filter(key => typeof item[key] !== 'object')
-                        .map(
+                    keys.map(
                         key => (
                             <td key={ item[key] } className={ DataRow.getClassName(key, item[key]) }>
                                 { DataRow.format(key, item[key]) }
@@ -32,6 +33,16 @@ class DataRow extends Component {
                         )
                     )
                 }
+                <td>
+                    <ButtonGroup aria-label="Basic example">
+                        <Button variant="outline-secondary" onClick={edit}>
+                            <span className="fas fa-edit"></span>
+                        </Button>
+                        <Button variant="outline-secondary" onClick={remove}>
+                            <span className="fas fa-trash-alt"></span>
+                        </Button>
+                    </ButtonGroup>
+                </td>
             </tr>
         );
     }
