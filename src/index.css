@@ -12,3 +12,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.income {
+  color: #7cfc00;
+}
+
+.expense {
+  color: #ff0000;
+}
+
+input[type="text"] {
+  width: 100px;
+}
