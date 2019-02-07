@@ -5,6 +5,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { PropsRoute } from '../../router/propsRoute';
 import DataTable from '../DataTable';
 import * as actions from '../../store/actions';
+import Categories from '../Categories';
 
 class App extends Component {
     render() {
@@ -28,20 +29,26 @@ class App extends Component {
                             component={ DataTable }
                             addExpense={ this.props.addExpense }
                             addIncome={ this.props.addIncome }
-                            addCategory={ this.props.addCategory }
 
                             editExpense={ this.props.editExpense }
                             editIncome={ this.props.editIncome }
-                            editCategory={ this.props.editCategory }
 
                             removeExpense={ this.props.removeExpense }
                             removeIncome={ this.props.removeIncome }
-                            removeCategory={ this.props.removeCategory }
 
                             expenses={ this.props.expenses }
                             income={ this.props.income }
                             categories={ this.props.categories }
                             amount={ this.props.amount } />
+
+                        <PropsRoute path='/categories'
+                                    component={ Categories }
+                                    categories={ this.props.categories }
+                                    addCategory={ this.props.addCategory }
+                                    editCategory={ this.props.editCategory }
+                                    removeCategory={ this.props.removeCategory } />
+
+                        <PropsRoute path='/chart' />
 
                         <Redirect from='/' to='/money' />
 

@@ -8,7 +8,6 @@ class DataTable extends Component {
 
     constructor(props) {
         super(props);
-        this.input = React.createRef();
         this.moneyInput = React.createRef();
         this.category = null;
     }
@@ -37,15 +36,7 @@ class DataTable extends Component {
         addIncome(income);
     }
 
-    addCategory() {
-        const { addCategory } = this.props;
-        let category = {
-            categoryId: rand.generate(this.ID_LENGTH),
-            name: this.input.current.value,
-            hidden: {} // not for output
-        };
-        addCategory(category);
-    }
+
 
     setCategory(category) {
         this.category = category;
@@ -107,15 +98,7 @@ class DataTable extends Component {
                                 </Dropdown>
                             </Col>
 
-                            <Col>
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Prepend>
-                                        <Button variant="outline-secondary"
-                                                onClick={ this.addCategory.bind(this) } size="sm">Add Category</Button>
-                                    </InputGroup.Prepend>
-                                    <Form.Control type="text" ref={ this.input } size="sm" />
-                                </InputGroup>
-                            </Col>
+
 
                         </Form.Row>
                         <Row>
@@ -129,8 +112,6 @@ class DataTable extends Component {
                 <div>
                     <Container>
                         <Table striped bordered hover>
-                            <thead>
-                            </thead>
                             <tbody>
                             { data
                                 .map(item => (
