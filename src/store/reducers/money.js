@@ -31,7 +31,7 @@ export const money = (state = initialState, action) => {
 
         case actionTypes.EDIT_EXPENSE:
             newExpenses[expense.transactionId] = expense;
-            newAmount -= Math.abs(state.expenses.reduce((sum, exp) => sum += exp.amount, 0));
+            newAmount = -Math.abs(newExpenses.concat(newIncome).reduce((sum, exp) => sum += exp.amount, 0));
             return { ...state, amount: newAmount, expenses: newExpenses };
 
         case actionTypes.REMOVE_EXPENSE:
@@ -46,7 +46,7 @@ export const money = (state = initialState, action) => {
 
         case actionTypes.EDIT_INCOME:
             newIncome[income.transactionId] = income;
-            newAmount += state.income.reduce((sum, inc) => sum += inc.amount, 0);
+            newAmount = newExpenses.concat(newIncome).reduce((sum, inc) => sum += inc.amount, 0);
             return { ...state, amount: newAmount, income: newIncome };
 
         case actionTypes.REMOVE_INCOME:
