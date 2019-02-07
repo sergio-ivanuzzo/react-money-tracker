@@ -38,21 +38,20 @@ class DataRow extends Component {
     update(oldItem) {
 
         let newItem = { ...oldItem, ...this.state.editingColumns };
+        let { edit } = this.props;
         console.log(newItem)
 
-        this.setState({editingColumns: {}, updatePressed: true}, () => {
-            let { edit } = this.props;
+        this.setState({editingColumns: {}, updatePressed: true, editMode: false}, () => {
             edit(newItem);
         });
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log(this.state.editMode, nextState.editMode)
-        if (nextState.updatePressed || !nextState.editMode) {
+        if (!nextState.updatePressed && nextState.editMode) {
             return true;
         }
 
-        return false;
+        return true;
     }
 
     render() {

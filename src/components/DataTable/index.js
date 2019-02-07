@@ -55,12 +55,12 @@ class DataTable extends Component {
 
     getEditMethod(item) {
         const { editExpense, editIncome } = this.props;
-        return (parseFloat(item.amount) < 0) ? editExpense.bind(this, item) : editIncome.bind(this, item);
+        return (parseFloat(item.amount) < 0) ? editExpense.bind(this) : editIncome.bind(this);
     }
 
     getRemoveMethod(item) {
         const { removeExpense, removeIncome } = this.props;
-        return (parseFloat(item.amount) < 0) ? removeExpense.bind(this, item) : removeIncome.bind(this, item);
+        return (parseFloat(item.amount) < 0) ? removeExpense.bind(this) : removeIncome.bind(this);
     }
 
     render() {
@@ -138,8 +138,8 @@ class DataTable extends Component {
                                 .map(item => (
                                     <DataRow key={ item.transactionId }
                                              item={ item }
-                                             edit={ this.getEditMethod.bind(this, item) }
-                                             remove={ this.getRemoveMethod.bind(this, item) } />))
+                                             edit={ this.getEditMethod(item) }
+                                             remove={ this.getRemoveMethod(item) } />))
                             }
                             </tbody>
                         </Table>
