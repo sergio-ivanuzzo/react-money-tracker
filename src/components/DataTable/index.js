@@ -15,7 +15,7 @@ class DataTable extends Component {
         this.category = null;
     }
 
-    ID_LENGTH = 20;
+    ID_LENGTH = 50;
 
     addExpense() {
         const { addExpense } = this.props;

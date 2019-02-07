@@ -21,7 +21,7 @@ export const money = (state = initialState, action) => {
     switch (action.type) {
         // Expenses
         case actionTypes.NEW_EXPENSE:
-            expense.hidden.transactionIndex = transactionIndex++;
+            expense.hidden.transactionIndex = ++transactionIndex;
             return {
                 ...state,
                 amount: newAmount - Math.abs(expense.amount),
@@ -30,9 +30,13 @@ export const money = (state = initialState, action) => {
             };
 
         case actionTypes.EDIT_EXPENSE:
-            newExpenses[expense.transactionId] = expense;
             newAmount = -Math.abs(newExpenses.concat(newIncome).reduce((sum, exp) => sum += exp.amount, 0));
-            return { ...state, amount: newAmount, expenses: newExpenses };
+            return {
+                ...state,
+                amount: newAmount,
+                expenses: newExpenses.map((item) =>
+                    (expense.hidden.transactionIndex === item.hidden.transactionIndex) ? expense : item)
+            };
 
         case actionTypes.REMOVE_EXPENSE:
             newAmount += Math.abs(expense.amount);
@@ -41,14 +45,22 @@ export const money = (state = initialState, action) => {
 
         // income
         case actionTypes.NEW_INCOME:
-            income.hidden.transactionIndex = transactionIndex++;
-            return { ...state, amount: newAmount + income.amount, income: [...state.income, income], transactionIndex };
+            income.hidden.transactionIndex = ++transactionIndex;
+            return {
+                ...state,
+                amount: newAmount + parseFloat(income.amount),
+                income: [...state.income, income], transactionIndex
+            };
 
         case actionTypes.EDIT_INCOME:
-            console.log('new inc=', income)
-            newIncome[income.transactionId] = income;
+            //newIncome[income.hidden.transactionIndex] = income;
             newAmount = newExpenses.concat(newIncome).reduce((sum, inc) => sum += inc.amount, 0);
-            return { ...state, amount: newAmount, income: newIncome };
+            return {
+                ...state,
+                amount: newAmount,
+                income: newIncome.map((item) =>
+                    (income.hidden.transactionIndex === item.hidden.transactionIndex) ? income : item)
+            }
 
         case actionTypes.REMOVE_INCOME:
             newAmount -= parseFloat(income.amount);
