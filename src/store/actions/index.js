@@ -24,24 +24,24 @@ export const removeExpense = (expense) => ({
 });
 
 // income
-export const addIncome = (expense) => ({
+export const addIncome = (income) => ({
     type: actionTypes.NEW_INCOME,
     payload: {
-        expense
+        income
     }
 });
 
-export const editIncome = (expense) => ({
+export const editIncome = (income) => ({
     type: actionTypes.EDIT_INCOME,
     payload: {
-        expense
+        income
     }
 });
 
-export const removeIncome = (expense) => ({
+export const removeIncome = (income) => ({
     type: actionTypes.REMOVE_INCOME,
     payload: {
-        expense
+        income
     }
 });
 

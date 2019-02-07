@@ -17,10 +17,12 @@ class DataTable extends Component {
         value: ''
     }
 
+    ID_LENGTH = 20
+
     addExpense() {
         const { addExpense } = this.props;
         let expense = {
-            transactionId: rand.generate(10),
+            transactionId: rand.generate(this.ID_LENGTH),
             category: this.select.current.value
         };
         addExpense(expense);
@@ -29,7 +31,7 @@ class DataTable extends Component {
     addIncome() {
         const { addIncome } = this.props;
         let income = {
-            transactionId: rand.generate(10),
+            transactionId: rand.generate(this.ID_LENGTH),
             category: this.select.current.value
         };
         addIncome(income);
@@ -38,7 +40,7 @@ class DataTable extends Component {
     addCategory() {
         const { addCategory } = this.props;
         let category = {
-            categoryId: rand.generate(10),
+            categoryId: rand.generate(this.ID_LENGTH),
             name: this.input.current.value
         };
         addCategory(category);
@@ -64,12 +66,14 @@ class DataTable extends Component {
                 </select>
 
                 <table>
-                    { expenses
-                        .map(exp => (<DataRow key={ exp.transactionId }/>))
-                    }
-                    { income
-                        .map(inc => (<DataRow key={ inc.transactionId }/>))
-                    }
+                    <tbody>
+                        { expenses
+                            .map(exp => (<DataRow key={ exp.transactionId } item={exp} />))
+                        }
+                        { income
+                            .map(inc => (<DataRow key={ inc.transactionId } item={inc} />))
+                        }
+                    </tbody>
                 </table>
             </Fragment>
         );
