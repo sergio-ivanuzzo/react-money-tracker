@@ -45,6 +45,7 @@ export const money = (state = initialState, action) => {
             return { ...state, amount: newAmount + income.amount, income: [...state.income, income], transactionIndex };
 
         case actionTypes.EDIT_INCOME:
+            console.log('new=', income)
             newIncome[income.transactionId] = income;
             newAmount = newExpenses.concat(newIncome).reduce((sum, inc) => sum += inc.amount, 0);
             return { ...state, amount: newAmount, income: newIncome };

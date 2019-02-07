@@ -138,8 +138,8 @@ class DataTable extends Component {
                                 .map(item => (
                                     <DataRow key={ item.transactionId }
                                              item={ item }
-                                             edit={ this.getEditMethod(item) }
-                                             remove={ this.getRemoveMethod(item) } />))
+                                             edit={ this.getEditMethod.bind(this, item) }
+                                             remove={ this.getRemoveMethod.bind(this, item) } />))
                             }
                             </tbody>
                         </Table>
