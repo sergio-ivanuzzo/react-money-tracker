@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {Button, Col, Row, Container, Form, InputGroup, Table} from 'react-bootstrap';
 import rand from 'random-key';
+import LocalStorageService from '../../services/localStorageService';
 import DataRow from '../DataTable/DataRow';
 
 
@@ -8,13 +9,7 @@ class Categories extends Component {
     constructor(props) {
         super(props);
         this.input = React.createRef();
-        this._init_storage();
-    }
-
-    _init_storage() {
-        if (!window.localStorage.getItem('categories')) {
-            window.localStorage.setItem('categories', JSON.stringify([]));
-        }
+        LocalStorageService.init_storage(['categories']);
     }
 
     addCategory() {
@@ -25,23 +20,14 @@ class Categories extends Component {
             hidden: {} // not for output
         };
 
-        this._save_to_storage('categories', category);
+        LocalStorageService.save_to_storage('categories', category);
 
         addCategory(category);
     }
 
-    _save_to_storage(key, item) {
-        let items = JSON.parse(window.localStorage.getItem(key));
-        items.push(item);
-        window.localStorage.setItem(key, JSON.stringify(items));
-    }
-
     render() {
         const { editCategory, removeCategory } = this.props;
-        let categories = [];
-        if (window.localStorage.getItem('categories')) {
-            categories = JSON.parse(window.localStorage.getItem('categories'));
-        }
+        let categories = LocalStorageService.get_from_storage('categories');
 
         return (
             <Fragment>

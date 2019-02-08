@@ -6,6 +6,7 @@ import { PropsRoute } from '../../router/propsRoute';
 import DataTable from '../DataTable';
 import * as actions from '../../store/actions';
 import Categories from '../Categories';
+import Charts from '../Charts';
 
 class App extends Component {
     render() {
@@ -52,7 +53,7 @@ class App extends Component {
                                     removeCategory={ removeCategory }
                                     categories={ categories } />
 
-                        <PropsRoute path='/chart' />
+                        <PropsRoute path='/chart' component={ Charts } />
 
                         <Redirect from='/' to='/money' />
 

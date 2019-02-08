@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Dropdown, Row, Col } from 'react-bootstrap';
+import LocalStorageService from '../../services/localStorageService';
 
 
 class CategoriesDropdown extends Component {
@@ -19,10 +20,7 @@ class CategoriesDropdown extends Component {
     }
 
     render() {
-        let categories = [];
-        if (window.localStorage.getItem('categories')) {
-            categories = JSON.parse(window.localStorage.getItem('categories'));
-        }
+        let categories = LocalStorageService.get_from_storage('categories');
 
         return (
             <Fragment>
