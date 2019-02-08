@@ -8,6 +8,10 @@ class Categories extends Component {
     constructor(props) {
         super(props);
         this.input = React.createRef();
+
+        if (!window.localStorage.getItem('categories')) {
+            window.localStorage.setItem('categories', JSON.stringify([]));
+        }
     }
 
     addCategory() {
@@ -17,11 +21,21 @@ class Categories extends Component {
             name: this.input.current.value,
             hidden: {} // not for output
         };
+
+        let categories = JSON.parse(window.localStorage.getItem('categories'));
+        categories.push(category);
+        window.localStorage.setItem('categories', JSON.stringify(categories));
+
         addCategory(category);
     }
 
     render() {
-        const { categories, editCategory, removeCategory } = this.props;
+        const { editCategory, removeCategory } = this.props;
+        let categories = [];
+        if (window.localStorage.getItem('categories')) {
+            categories = JSON.parse(window.localStorage.getItem('categories'));
+        }
+
         return (
             <Fragment>
                 <Col>

@@ -18,7 +18,7 @@ class App extends Component {
 
         return (
             <Fragment>
-                <Navbar bg="dark" variant="dark" expand="sm">
+                <Navbar bg="dark" variant="dark" expand="sm" className="mb-3">
                     <Navbar.Brand href="#home">React Money Tracker</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -42,7 +42,6 @@ class App extends Component {
                             removeIncome={ removeIncome }
                             expenses={ expenses }
                             income={ income }
-                            categories={ categories }
                             amount={ amount } />
 
                         <PropsRoute path='/categories'

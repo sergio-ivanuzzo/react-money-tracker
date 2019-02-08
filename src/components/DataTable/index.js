@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import rand from 'random-key';
-import { Container, Table, Dropdown, Form, Row, Col, Button, InputGroup } from 'react-bootstrap';
+import { Container, Table, Form, Row, Col, Button, InputGroup } from 'react-bootstrap';
+import CategoriesDropdown from '../../components/Categories/dropdown';
 import DataRow from './DataRow';
 
 
@@ -36,8 +37,6 @@ class DataTable extends Component {
         addIncome(income);
     }
 
-
-
     setCategory(category) {
         this.category = category;
     }
@@ -54,7 +53,7 @@ class DataTable extends Component {
 
     render() {
         // properties
-        const { expenses, income, categories, amount } = this.props;
+        const { expenses, income, amount } = this.props;
 
         let data = expenses
             .concat(income)
@@ -79,23 +78,7 @@ class DataTable extends Component {
                             </Col>
 
                             <Col>
-                                <Dropdown>
-                                    <Dropdown.Toggle variant="outline-secondary"
-                                                     id="dropdown-basic" size="sm" disabled={ !categories.length }>
-                                        Categories
-                                    </Dropdown.Toggle>
-                                    <Dropdown.Menu>
-                                        {
-                                            categories.map(cat => (
-                                                <Dropdown.Item
-                                                    onSelect={this.setCategory(cat)}
-                                                    key={ cat.categoryId }>
-                                                    { cat.name }
-                                                </Dropdown.Item>)
-                                            )
-                                        }
-                                    </Dropdown.Menu>
-                                </Dropdown>
+                                <CategoriesDropdown setCategory={ this.setCategory.bind(this) } />
                             </Col>
 
 

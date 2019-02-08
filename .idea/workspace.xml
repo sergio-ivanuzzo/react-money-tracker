@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc690008-bfb7-4ab7-a3cf-5e9c97112bac" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/Categories/dropdown.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/App/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Categories/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Categories/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/category.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/category.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTable/DataRow/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTable/DataRow/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTable/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTable/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,23 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/App/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="42" selection-start-line="42" selection-end-line="42" />
+            <state relative-caret-position="30">
+              <caret line="20" column="76" selection-start-line="20" selection-start-column="76" selection-end-line="20" selection-end-column="76" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
@@ -63,10 +53,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/DataTable/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-525">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="-285">
+              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Categories/dropdown.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="47" column="59" selection-start-line="47" selection-start-column="59" selection-end-line="47" selection-end-column="59" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,22 +77,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Categories/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="39" column="58" selection-start-line="39" selection-start-column="58" selection-end-line="39" selection-end-column="58" />
+            <state relative-caret-position="55">
+              <caret line="33" column="28" lean-forward="true" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/router/propsRoute.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -135,6 +125,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>console.log</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -152,15 +147,16 @@
         <option value="$PROJECT_DIR$/src/store/actions/index.js" />
         <option value="$PROJECT_DIR$/src/index.css" />
         <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/src/components/DataTable/DataRow/index.js" />
         <option value="$PROJECT_DIR$/src/store/reducers/money.js" />
         <option value="$PROJECT_DIR$/src/router/propsRoute.js" />
         <option value="$PROJECT_DIR$/src/router/privateRoute.js" />
         <option value="$PROJECT_DIR$/src/router/renderMergedProps.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/src/components/DataTable/index.js" />
         <option value="$PROJECT_DIR$/src/store/reducers/category.js" />
+        <option value="$PROJECT_DIR$/src/components/DataTable/index.js" />
         <option value="$PROJECT_DIR$/src/components/Categories/index.js" />
+        <option value="$PROJECT_DIR$/src/components/DataTable/DataRow/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Categories/dropdown.js" />
         <option value="$PROJECT_DIR$/src/components/App/index.js" />
       </list>
     </option>
@@ -208,6 +204,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="App" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-money-tracker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-money-tracker" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Categories" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="react-money-tracker" type="b2602c69:ProjectViewProjectNode" />
@@ -290,7 +293,7 @@
       <workItem from="1549445190480" duration="27334000" />
       <workItem from="1549526695045" duration="24840000" />
       <workItem from="1549562326118" duration="12075000" />
-      <workItem from="1549619343605" duration="836000" />
+      <workItem from="1549619343605" duration="7118000" />
     </task>
     <task id="LOCAL-00001" summary="added actions and reducers">
       <created>1549477104123</created>
@@ -376,11 +379,18 @@
       <option name="project" value="LOCAL" />
       <updated>1549577721378</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="little refactoring">
+      <created>1549620207985</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1549620207985</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65272000" />
+    <option name="totallyTimeSpent" value="71554000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1602" height="865" extended-state="6" />
@@ -424,7 +434,8 @@
     <MESSAGE value="finished editing" />
     <MESSAGE value="added router + navbar" />
     <MESSAGE value="added categories page" />
-    <option name="LAST_COMMIT_MESSAGE" value="added categories page" />
+    <MESSAGE value="little refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="little refactoring" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/store/actions/action-types.js">
@@ -535,16 +546,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/DataTable/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-525">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/reducers/money.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -559,20 +560,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Categories/index.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/react-router-dom/es/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-router-dom/es/BrowserRouter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="39" column="58" selection-start-line="39" selection-start-column="58" selection-end-line="39" selection-end-column="58" />
+        <state relative-caret-position="246">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/DataTable/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-285">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Categories/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="33" column="28" lean-forward="true" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Categories/dropdown.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="47" column="59" selection-start-line="47" selection-start-column="59" selection-end-line="47" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/App/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        <state relative-caret-position="30">
+          <caret line="20" column="76" selection-start-line="20" selection-start-column="76" selection-end-line="20" selection-end-column="76" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>

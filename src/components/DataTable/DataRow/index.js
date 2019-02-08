@@ -39,7 +39,6 @@ class DataRow extends Component {
 
         let newItem = { ...oldItem, ...this.state.editingColumns };
         let { edit } = this.props;
-        console.log(newItem)
 
         this.setState({editingColumns: {}, updatePressed: true, editMode: false}, () => {
             edit(newItem);
