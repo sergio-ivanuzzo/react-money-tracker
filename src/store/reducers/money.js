@@ -6,7 +6,7 @@ const initialState = {
     amount: 0,
     income: [],
     expenses: [],
-    // counter
+    // counter (using for sort)
     transactionIndex: 0
 };
 
@@ -16,12 +16,12 @@ export const money = (state = initialState, action) => {
     let newIncome = state.income;
     let expense = action.payload && action.payload.expense;
     let income = action.payload && action.payload.income;
-    let transactionIndex = state.transactionIndex;
+    let transactionIndex = 0;
 
     switch (action.type) {
         // Expenses
         case actionTypes.NEW_EXPENSE:
-            expense.hidden.transactionIndex = ++transactionIndex;
+            transactionIndex = expense.hidden.transactionIndex;
             return {
                 ...state,
                 amount: newAmount - Math.abs(expense.amount),
@@ -45,15 +45,15 @@ export const money = (state = initialState, action) => {
 
         // income
         case actionTypes.NEW_INCOME:
-            income.hidden.transactionIndex = ++transactionIndex;
+            transactionIndex = income.hidden.transactionIndex;
             return {
                 ...state,
                 amount: newAmount + parseFloat(income.amount),
-                income: [...state.income, income], transactionIndex
+                income: [...state.income, income],
+                transactionIndex
             };
 
         case actionTypes.EDIT_INCOME:
-            //newIncome[income.hidden.transactionIndex] = income;
             newAmount = newExpenses.concat(newIncome).reduce((sum, inc) => sum += inc.amount, 0);
             return {
                 ...state,

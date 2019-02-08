@@ -11,34 +11,70 @@ class DataTable extends Component {
         super(props);
         this.moneyInput = React.createRef();
         this.category = null;
+        this._init_storage();
     }
 
     ID_LENGTH = 50;
 
+    _init_storage() {
+        if (!window.localStorage.getItem('expenses')) {
+            window.localStorage.setItem('expenses', JSON.stringify([]));
+        }
+
+        if (!window.localStorage.getItem('income')) {
+            window.localStorage.setItem('income', JSON.stringify([]));
+        }
+    }
+
     addExpense() {
         const { addExpense } = this.props;
+        let transactionIndex = this.props.transactionIndex || 0;
+
         let expense = {
             transactionId: rand.generate(this.ID_LENGTH),
             category: this.category.name,
             amount: -parseFloat(this.moneyInput.current.value),
-            hidden: {} // not for output
+            hidden: { transactionIndex: ++transactionIndex } // not for output
         };
+
+        this._save_to_storage('expenses', expense);
+
         addExpense(expense);
     }
 
     addIncome() {
         const { addIncome } = this.props;
+        let transactionIndex = this.props.transactionIndex || 0;
+
         let income = {
             transactionId: rand.generate(this.ID_LENGTH),
             category: this.category.name,
             amount: parseFloat(this.moneyInput.current.value),
-            hidden: {} // not for output
+            hidden: { transactionIndex: ++transactionIndex } // not for output
         };
+
+        this._save_to_storage('income', income);
+
         addIncome(income);
     }
 
     setCategory(category) {
         this.category = category;
+    }
+
+    _save_to_storage(key, item) {
+        let items = JSON.parse(window.localStorage.getItem(key));
+        items.push(item);
+        window.localStorage.setItem(key, JSON.stringify(items));
+    }
+
+    _get_from_storage(key) {
+        let items = [];
+        if (window.localStorage.getItem(key)) {
+            items = JSON.parse(window.localStorage.getItem(key));
+        }
+
+        return items;
     }
 
     getEditMethod(item) {
@@ -53,7 +89,11 @@ class DataTable extends Component {
 
     render() {
         // properties
-        const { expenses, income, amount } = this.props;
+        const { amount } = this.props;
+        let expenses = this._get_from_storage('expenses');
+        let income = this._get_from_storage('income');
+
+        console.log(expenses, income);
 
         let data = expenses
             .concat(income)

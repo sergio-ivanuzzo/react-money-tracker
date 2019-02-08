@@ -10,7 +10,7 @@ import Categories from '../Categories';
 class App extends Component {
     render() {
         // properties
-        const { expenses, income, categories, amount } = this.props;
+        const { expenses, income, categories, amount, transactionIndex } = this.props;
         // methods
         const { addExpense, addIncome, addCategory } = this.props;
         const { editExpense, editIncome, editCategory } = this.props;
@@ -42,7 +42,8 @@ class App extends Component {
                             removeIncome={ removeIncome }
                             expenses={ expenses }
                             income={ income }
-                            amount={ amount } />
+                            amount={ amount }
+                            transactionIndex={ transactionIndex } />
 
                         <PropsRoute path='/categories'
                                     component={ Categories }
@@ -67,7 +68,8 @@ const mapStateToProps = (state) => {
         amount: state.money.amount,
         expenses: state.money.expenses,
         income: state.money.income,
-        categories: state.category.categories
+        categories: state.category.categories,
+        transactionIndex: state.money.transactionIndex
     }
 };
 

@@ -1,14 +1,17 @@
 import React, { Component, Fragment } from 'react';
-import {Button, Col, Form, InputGroup, Table} from 'react-bootstrap';
+import {Button, Col, Row, Container, Form, InputGroup, Table} from 'react-bootstrap';
+import rand from 'random-key';
 import DataRow from '../DataTable/DataRow';
-import rand from "random-key";
 
 
 class Categories extends Component {
     constructor(props) {
         super(props);
         this.input = React.createRef();
+        this._init_storage();
+    }
 
+    _init_storage() {
         if (!window.localStorage.getItem('categories')) {
             window.localStorage.setItem('categories', JSON.stringify([]));
         }
@@ -22,11 +25,15 @@ class Categories extends Component {
             hidden: {} // not for output
         };
 
-        let categories = JSON.parse(window.localStorage.getItem('categories'));
-        categories.push(category);
-        window.localStorage.setItem('categories', JSON.stringify(categories));
+        this._save_to_storage('categories', category);
 
         addCategory(category);
+    }
+
+    _save_to_storage(key, item) {
+        let items = JSON.parse(window.localStorage.getItem(key));
+        items.push(item);
+        window.localStorage.setItem(key, JSON.stringify(items));
     }
 
     render() {
@@ -38,26 +45,30 @@ class Categories extends Component {
 
         return (
             <Fragment>
-                <Col>
-                    <InputGroup className="mb-3">
-                        <InputGroup.Prepend>
-                            <Button variant="outline-secondary"
-                                    onClick={ this.addCategory.bind(this) } size="sm">Add Category</Button>
-                        </InputGroup.Prepend>
-                        <Form.Control type="text" ref={ this.input } size="sm" />
-                    </InputGroup>
-                </Col>
-                <Table striped bordered hover>
-                    <tbody>
-                    { categories
-                        .map(item => (
-                            <DataRow key={ item.categoryId }
-                                     item={ item }
-                                     edit={ editCategory.bind(this, item) }
-                                     remove={ removeCategory.bind(this, item) } />))
-                    }
-                    </tbody>
-                </Table>
+                <Container>
+                    <Row>
+                        <Col>
+                            <InputGroup className="mb-3">
+                                <InputGroup.Prepend>
+                                    <Button variant="outline-secondary"
+                                            onClick={ this.addCategory.bind(this) } size="sm">Add Category</Button>
+                                </InputGroup.Prepend>
+                                <Form.Control type="text" ref={ this.input } size="sm" />
+                            </InputGroup>
+                            <Table striped bordered hover>
+                                <tbody>
+                                { categories
+                                    .map(item => (
+                                        <DataRow key={ item.categoryId }
+                                                 item={ item }
+                                                 edit={ editCategory.bind(this, item) }
+                                                 remove={ removeCategory.bind(this, item) } />))
+                                }
+                                </tbody>
+                            </Table>
+                        </Col>
+                    </Row>
+                </Container>
             </Fragment>
         );
     }
