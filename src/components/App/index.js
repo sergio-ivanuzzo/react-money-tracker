@@ -9,6 +9,13 @@ import Categories from '../Categories';
 
 class App extends Component {
     render() {
+        // properties
+        const { expenses, income, categories, amount } = this.props;
+        // methods
+        const { addExpense, addIncome, addCategory } = this.props;
+        const { editExpense, editIncome, editCategory } = this.props;
+        const { removeExpense, removeIncome, removeCategory } = this.props;
+
         return (
             <Fragment>
                 <Navbar bg="dark" variant="dark" expand="sm">
@@ -27,26 +34,23 @@ class App extends Component {
                         <PropsRoute
                             path='/money'
                             component={ DataTable }
-                            addExpense={ this.props.addExpense }
-                            addIncome={ this.props.addIncome }
-
-                            editExpense={ this.props.editExpense }
-                            editIncome={ this.props.editIncome }
-
-                            removeExpense={ this.props.removeExpense }
-                            removeIncome={ this.props.removeIncome }
-
-                            expenses={ this.props.expenses }
-                            income={ this.props.income }
-                            categories={ this.props.categories }
-                            amount={ this.props.amount } />
+                            addExpense={ addExpense }
+                            addIncome={ addIncome }
+                            editExpense={ editExpense }
+                            editIncome={ editIncome }
+                            removeExpense={ removeExpense }
+                            removeIncome={ removeIncome }
+                            expenses={ expenses }
+                            income={ income }
+                            categories={ categories }
+                            amount={ amount } />
 
                         <PropsRoute path='/categories'
                                     component={ Categories }
-                                    categories={ this.props.categories }
-                                    addCategory={ this.props.addCategory }
-                                    editCategory={ this.props.editCategory }
-                                    removeCategory={ this.props.removeCategory } />
+                                    addCategory={ addCategory }
+                                    editCategory={ editCategory }
+                                    removeCategory={ removeCategory }
+                                    categories={ categories } />
 
                         <PropsRoute path='/chart' />
 

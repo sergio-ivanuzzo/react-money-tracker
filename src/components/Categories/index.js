@@ -37,7 +37,7 @@ class Categories extends Component {
                     <tbody>
                     { categories
                         .map(item => (
-                            <DataRow key={ item.transactionId }
+                            <DataRow key={ item.categoryId }
                                      item={ item }
                                      edit={ editCategory.bind(this, item) }
                                      remove={ removeCategory.bind(this, item) } />))

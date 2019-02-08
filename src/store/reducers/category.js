@@ -19,8 +19,11 @@ export const category = (state = initialState, action) => {
             return { ...state, categories }
 
         case actionTypes.EDIT_CATEGORY:
-            newCategories[category.categoryId] = category;
-            return { ...state, categories: newCategories }
+            return {
+                ...state,
+                categories: newCategories.map((item) =>
+                    (category.categoryId === item.categoryId) ? category : item)
+            }
 
         case actionTypes.REMOVE_CATEGORY:
             newCategories.splice(category.categoryId, 1);
