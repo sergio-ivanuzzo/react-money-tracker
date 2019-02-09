@@ -22,6 +22,7 @@ class Categories extends Component {
 
     render() {
         const { editCategory, removeCategory, categories } = this.props;
+        console.log('cat render')
         return (
             <Fragment>
                 <Container>
@@ -41,7 +42,7 @@ class Categories extends Component {
                                         <DataRow key={ item.categoryId }
                                                  item={ item }
                                                  edit={ editCategory.bind(this) }
-                                                 remove={ removeCategory.bind(this) } />))
+                                                 remove={ removeCategory.bind(this, item) } />))
                                 }
                                 </tbody>
                             </Table>

@@ -94,7 +94,9 @@ export const money = (state = initialState, action) => {
 
         case actionTypes.REMOVE_INCOME:
             newAmount -= parseFloat(income.amount);
-            newIncome.splice(income.transactionId, 1);
+
+            let incomePos = newExpenses.findIndex(inc => inc.transactionId === income.transactionId);
+            newIncome.splice(incomePos, 1);
 
             LocalStorageService.save_to_storage('income', newIncome);
             LocalStorageService.save_to_storage('amount', newAmount);

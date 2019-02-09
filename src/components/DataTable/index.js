@@ -58,6 +58,7 @@ class DataTable extends Component {
     render() {
         // properties
         const { amount, expenses, income } = this.props;
+        console.log('render')
 
         let data = expenses
             .concat(income)
