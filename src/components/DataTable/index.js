@@ -27,9 +27,7 @@ class DataTable extends Component {
             amount: -parseFloat(this.moneyInput.current.value),
             hidden: { transactionIndex: ++transactionIndex } // not for output
         };
-
-        LocalStorageService.save_to_storage('expenses', expense);
-
+        console.log('e=', expense)
         addExpense(expense);
     }
 
@@ -43,9 +41,6 @@ class DataTable extends Component {
             amount: parseFloat(this.moneyInput.current.value),
             hidden: { transactionIndex: ++transactionIndex } // not for output
         };
-
-        this._save_to_storage('income', income);
-
         addIncome(income);
     }
 
@@ -65,11 +60,7 @@ class DataTable extends Component {
 
     render() {
         // properties
-        const { amount } = this.props;
-        let expenses = LocalStorageService.get_from_storage('expenses');
-        let income = LocalStorageService.get_from_storage('income');
-
-        console.log(expenses, income);
+        const { amount, expenses, income } = this.props;
 
         let data = expenses
             .concat(income)

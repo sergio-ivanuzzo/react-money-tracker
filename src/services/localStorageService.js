@@ -17,10 +17,8 @@ class LocalStorageService {
         return items;
     }
 
-    static save_to_storage(key, item) {
-        let items = JSON.parse(window.localStorage.getItem(key));
-        items.push(item);
-        window.localStorage.setItem(key, JSON.stringify(items));
+    static save_to_storage(key, newItems) {
+        window.localStorage.setItem(key, JSON.stringify(newItems));
     }
 }
 

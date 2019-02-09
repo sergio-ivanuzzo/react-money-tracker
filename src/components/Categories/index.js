@@ -19,16 +19,12 @@ class Categories extends Component {
             name: this.input.current.value,
             hidden: {} // not for output
         };
-
-        LocalStorageService.save_to_storage('categories', category);
-
+        console.log('c=', category)
         addCategory(category);
     }
 
     render() {
-        const { editCategory, removeCategory } = this.props;
-        let categories = LocalStorageService.get_from_storage('categories');
-
+        const { editCategory, removeCategory, categories } = this.props;
         return (
             <Fragment>
                 <Container>
@@ -47,8 +43,8 @@ class Categories extends Component {
                                     .map(item => (
                                         <DataRow key={ item.categoryId }
                                                  item={ item }
-                                                 edit={ editCategory.bind(this, item) }
-                                                 remove={ removeCategory.bind(this, item) } />))
+                                                 edit={ editCategory.bind(this) }
+                                                 remove={ removeCategory.bind(this) } />))
                                 }
                                 </tbody>
                             </Table>
