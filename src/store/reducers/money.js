@@ -1,10 +1,10 @@
 import { actionTypes } from '../actions/action-types';
-import LocalStorageService from "../../services/localStorageService";
+import LocalStorageService from '../../services/localStorageService';
 
 
 const initialState = {
     // total sum
-    amount: 0,
+    amount: LocalStorageService.get_from_storage('amount', 0),
     income: LocalStorageService.get_from_storage('income'),
     expenses: LocalStorageService.get_from_storage('expenses'),
     // counter (using for sort)
@@ -17,29 +17,33 @@ export const money = (state = initialState, action) => {
     let newIncome = state.income;
     let expense = action.payload && action.payload.expense;
     let income = action.payload && action.payload.income;
-    let transactionIndex = 0;
+    let transactionIndex = state.transactionIndex;
 
     switch (action.type) {
         // Expenses
         case actionTypes.NEW_EXPENSE:
             transactionIndex = expense.hidden.transactionIndex;
             newExpenses = [...state.expenses, expense];
+            newAmount -= Math.abs(expense.amount);
 
             LocalStorageService.save_to_storage('expenses', newExpenses);
+            LocalStorageService.save_to_storage('amount', newAmount);
 
             return {
                 ...state,
-                amount: newAmount - Math.abs(expense.amount),
+                amount: newAmount,
                 expenses: newExpenses,
                 transactionIndex
             };
 
         case actionTypes.EDIT_EXPENSE:
-            newAmount = -Math.abs(newExpenses.concat(newIncome).reduce((sum, exp) => sum += exp.amount, 0));
             newExpenses = newExpenses.map((item) =>
-                (expense.hidden.transactionIndex === item.hidden.transactionIndex) ? expense : item)
+                (expense.hidden.transactionIndex === item.hidden.transactionIndex) ? expense : item);
+
+            newAmount = -Math.abs(newExpenses.concat(newIncome).reduce((sum, exp) => sum += parseFloat(exp.amount), 0));
 
             LocalStorageService.save_to_storage('expenses', newExpenses);
+            LocalStorageService.save_to_storage('amount', newAmount);
 
             return {
                 ...state,
@@ -49,9 +53,11 @@ export const money = (state = initialState, action) => {
 
         case actionTypes.REMOVE_EXPENSE:
             newAmount += Math.abs(expense.amount);
-            newExpenses.splice(expense.transactionId, 1);
+            let expensePos = newExpenses.findIndex(exp => exp.transactionId === expense.transactionId);
+            newExpenses.splice(expensePos, 1);
 
             LocalStorageService.save_to_storage('expenses', newExpenses);
+            LocalStorageService.save_to_storage('amount', newAmount);
 
             return { ...state, amount: newAmount, expenses: newExpenses };
 
@@ -59,22 +65,26 @@ export const money = (state = initialState, action) => {
         case actionTypes.NEW_INCOME:
             transactionIndex = income.hidden.transactionIndex;
             newIncome = [...state.income, income];
+            newAmount += parseFloat(income.amount);
 
             LocalStorageService.save_to_storage('income', newIncome);
+            LocalStorageService.save_to_storage('amount', newAmount);
 
             return {
                 ...state,
-                amount: newAmount + parseFloat(income.amount),
+                amount: newAmount,
                 income: newIncome,
                 transactionIndex
             };
 
         case actionTypes.EDIT_INCOME:
-            newAmount = newExpenses.concat(newIncome).reduce((sum, inc) => sum += inc.amount, 0);
             newIncome = newIncome.map((item) =>
-                (income.hidden.transactionIndex === item.hidden.transactionIndex) ? income : item)
+                (income.hidden.transactionIndex === item.hidden.transactionIndex) ? income : item);
+
+            newAmount = newExpenses.concat(newIncome).reduce((sum, inc) => sum += parseFloat(inc.amount), 0);
 
             LocalStorageService.save_to_storage('income', newIncome);
+            LocalStorageService.save_to_storage('amount', newAmount);
 
             return {
                 ...state,
@@ -87,6 +97,7 @@ export const money = (state = initialState, action) => {
             newIncome.splice(income.transactionId, 1);
 
             LocalStorageService.save_to_storage('income', newIncome);
+            LocalStorageService.save_to_storage('amount', newAmount);
 
             return { ...state, amount: newAmount, income: newIncome };
 

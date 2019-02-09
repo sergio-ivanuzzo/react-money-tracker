@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {Button, Col, Row, Container, Form, InputGroup, Table} from 'react-bootstrap';
 import rand from 'random-key';
-import LocalStorageService from '../../services/localStorageService';
 import DataRow from '../DataTable/DataRow';
 
 
@@ -9,7 +8,6 @@ class Categories extends Component {
     constructor(props) {
         super(props);
         this.input = React.createRef();
-        LocalStorageService.init_storage(['categories']);
     }
 
     addCategory() {
@@ -19,7 +17,6 @@ class Categories extends Component {
             name: this.input.current.value,
             hidden: {} // not for output
         };
-        console.log('c=', category)
         addCategory(category);
     }
 

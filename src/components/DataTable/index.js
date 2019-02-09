@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import rand from 'random-key';
 import { Container, Table, Form, Row, Col, Button, InputGroup } from 'react-bootstrap';
 import CategoriesDropdown from '../../components/Categories/dropdown';
-import LocalStorageService from '../../services/localStorageService';
 import DataRow from './DataRow';
 
 
@@ -12,7 +11,6 @@ class DataTable extends Component {
         super(props);
         this.moneyInput = React.createRef();
         this.category = null;
-        LocalStorageService.init_storage(['expenses', 'income']);
     }
 
     ID_LENGTH = 50;
@@ -27,7 +25,6 @@ class DataTable extends Component {
             amount: -parseFloat(this.moneyInput.current.value),
             hidden: { transactionIndex: ++transactionIndex } // not for output
         };
-        console.log('e=', expense)
         addExpense(expense);
     }
 
@@ -55,7 +52,7 @@ class DataTable extends Component {
 
     getRemoveMethod(item) {
         const { removeExpense, removeIncome } = this.props;
-        return (parseFloat(item.amount) < 0) ? removeExpense.bind(this) : removeIncome.bind(this);
+        return (parseFloat(item.amount) < 0) ? removeExpense.bind(this, item) : removeIncome.bind(this, item);
     }
 
     render() {

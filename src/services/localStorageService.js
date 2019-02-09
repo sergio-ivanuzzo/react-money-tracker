@@ -1,24 +1,12 @@
 class LocalStorageService {
 
-    static init_storage(keys) {
-        keys.forEach(key => {
-            if (!window.localStorage.getItem(key)) {
-                window.localStorage.setItem(key, JSON.stringify([]));
-            }
-        })
-    }
-
-    static get_from_storage(key) {
-        let items = [];
-        if (window.localStorage.getItem(key)) {
-            items = JSON.parse(window.localStorage.getItem(key));
-        }
-
-        return items;
+    static get_from_storage(key, initialValue=[]) {
+        return (window.localStorage.getItem(key)) ? JSON.parse(window.localStorage.getItem(key)) : initialValue;
     }
 
     static save_to_storage(key, newItems) {
-        window.localStorage.setItem(key, JSON.stringify(newItems));
+        newItems = (Array.isArray(newItems)) ? JSON.stringify(newItems) : newItems;
+        window.localStorage.setItem(key, newItems);
     }
 }
 
