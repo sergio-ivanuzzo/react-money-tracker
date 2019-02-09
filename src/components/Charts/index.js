@@ -42,8 +42,9 @@ class Charts extends Component {
         const income = LocalStorageService.get_from_storage('income');
 
         // total chart
-        const totalExpenses = -Math.abs(parseFloat(expenses.reduce((sum, exp) => sum += exp.amount, 0)));
-        const totalIncome = parseFloat(income.reduce((sum, inc) => sum += inc.amount, 0));
+        const totalExpenses = -Math.abs(parseFloat(expenses.reduce((sum, exp) => sum += parseFloat(exp.amount), 0)));
+        const totalIncome = parseFloat(income.reduce((sum, inc) => sum += parseFloat(inc.amount), 0));
+
         const total = this.getChartData(
             ['Expenses', 'Income'],
             [totalExpenses, totalIncome]
