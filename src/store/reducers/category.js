@@ -35,9 +35,7 @@ export const category = (state = initialState, action) => {
             }
 
         case actionTypes.REMOVE_CATEGORY:
-            let categoryPos = newCategories.findIndex(cat => cat.categoryId === category.categoryId);
-            newCategories.splice(categoryPos, 1);
-
+            newCategories = newCategories.filter(cat => cat.categoryId !== category.categoryId);
             LocalStorageService.save_to_storage('categories', newCategories);
 
             return { ...state, categories: newCategories }
